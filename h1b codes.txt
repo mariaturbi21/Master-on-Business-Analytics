@@ -1,0 +1,15 @@
+
+ import-csv "C:\Users\maria\OneDrive\Desktop\cases.csv" | export-csv "C:\Users\maria\OneDrive\Desktop\cases_bis.csv" -NoTypeInformation -Encoding UTF8
+
+mysql --local-infile=1 --show-warnings -h maria-turbi.mysql.database.azure.com -u mturbi -p
+
+Use h1b_visa;
+
+LOAD DATA LOCAL INFILE 
+'cases_bis.csv'
+INTO TABLE `cases`
+FIELDS TERMINATED BY ','
+ENCLOSED BY '"'
+LINES TERMINATED BY '\r\n'
+IGNORE 1 LINES
+;
